@@ -1,0 +1,21 @@
+{
+  "name": "neewt",
+  "version": "0.0.1",
+  "description": "A very simple tweening library.",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "es2015":  "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
+  "repository": "https://github.com/lazarljubenovic/neewt",
+  "author": "Lazar Ljubenović <lazar.ljubenovic.1995@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "devDependencies": {
+    "rollup": "^1.10.0",
+    "rollup-plugin-typescript2": "^0.20.1",
+    "typescript": "^3.4.3"
+  }
+}

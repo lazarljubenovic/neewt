@@ -1,10 +1,10 @@
 {
   "name": "neewt",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A very simple tweening library.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
-  "es2015":  "dist/esm/index.js",
+  "es2015": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
   "repository": "https://github.com/lazarljubenovic/neewt",
   "author": "Lazar Ljubenović <lazar.ljubenovic.1995@gmail.com>",

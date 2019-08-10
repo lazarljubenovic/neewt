@@ -90,7 +90,7 @@ tween(300, easing.linear, {
 
 A hook to call when the animation ends. You can run some clean-up code, unfreeze the Ui, or run the next animation in sequence here. It's entirely up to you.
 
-The hook will provide the reason for ending as an enumeration [`Endreason`](#end-reason), which you can use to know whether the tween ended naturally or its end was forced via [`finishTween`](#finishtween-tween).
+The hook will provide the reason for ending as an enumeration [`EndReason`](#end-reason), which you can use to know whether the tween ended naturally or its end was forced via [`finishTween`](#finishtweentween).
   
 
 ### `finishTween(tween)`
@@ -114,7 +114,7 @@ Internally, `easing` is not a regular object, but a so-called â€œexotic objectâ€
 
 ### `EndReason`
 
-An enumeration used in the [`onEnd`](#onend-end-reason) hook which allows the consumer to differentiate between natural ending of the tween and a forced one via a [`finishTween`](#finishtween-tween) function call.
+An enumeration used in the [`onEnd`](#onend-end-reason) hook which allows the consumer to differentiate between natural ending of the tween and a forced one via a [`finishTween`](#finishtweentween) function call.
 
 It defines two values:
 

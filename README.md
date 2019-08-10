@@ -114,7 +114,7 @@ Internally, `easing` is not a regular object, but a so-called â€œexotic objectâ€
 
 ### `EndReason`
 
-An enumeration used in the [`onEnd`](#onend-end-reason) hook which allows the consumer to differentiate between natural ending of the tween and a forced one via a [`finishTween`](#finishtweentween) function call.
+An enumeration used in the [`onEnd`](#onend-endreason--void) hook which allows the consumer to differentiate between natural ending of the tween and a forced one via a [`finishTween`](#finishtweentween) function call.
 
 It defines two values:
 

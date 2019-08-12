@@ -2,7 +2,7 @@ import { EndReason, InternalTweenClass, Tween } from './tween'
 
 type Raf = (frame: () => void) => void
 
-const defaultRaf = requestAnimationFrame
+const defaultRaf = (cb: () => void) => requestAnimationFrame(cb)
 const defaultGetTime = () => Date.now()
 
 

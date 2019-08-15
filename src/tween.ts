@@ -14,7 +14,7 @@ export enum EndReason {
 
 export type StartFn = () => void
 export type UpdateFn = (t: number) => void
-export type EndFn = (reason: EndReason) => void
+export type EndFn = (reason: EndReason, tween: Tween) => void
 
 export class InternalTweenClass {
 

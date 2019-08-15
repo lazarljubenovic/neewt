@@ -86,11 +86,13 @@ tween(300, easing.linear, {
 // Object is set to visible and its opacity is set to 0 at the same frame.
 ```
 
-#### `onEnd: (endReason) => void`
+#### `onEnd: (endReason, tween) => void`
 
 A hook to call when the animation ends. You can run some clean-up code, unfreeze the Ui, or run the next animation in sequence here. It's entirely up to you.
 
 The hook will provide the reason for ending as an enumeration [`EndReason`](#end-reason), which you can use to know whether the tween ended naturally or its end was forced via [`finishTween`](#finishtweentween).
+
+You'll also get the `Tween` reference that you can use to, for example, remove the tween from a set of currently running tweens.
   
 
 ### `finishTween(tween)`

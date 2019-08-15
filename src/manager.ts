@@ -26,7 +26,7 @@ export class Manager {
   public finish (tweenId: Tween): boolean {
     const tween = this.tweens.get(tweenId)
     if (tween == null) return false
-    tween.onEnd(EndReason.Forced)
+    tween.onEnd(EndReason.Forced, tweenId)
     this.tweens.delete(tweenId)
     return true
   }
@@ -57,7 +57,7 @@ export class Manager {
           // We could be overshooting by a bit here, eg. tween ends at 100, and we run this at 91 and 101.
           // We don't want to display the overshoot visually, but display the correct ending frame.
           tween.onUpdate(1)
-          tween.onEnd(EndReason.Natural)
+          tween.onEnd(EndReason.Natural, tweenId)
           ended.add(tweenId)
         } else {
           const t = (timestamp - tween.start) / tween.duration

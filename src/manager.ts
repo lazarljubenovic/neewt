@@ -26,6 +26,7 @@ export class Manager {
   public finish (tweenId: Tween): boolean {
     const tween = this.tweens.get(tweenId)
     if (tween == null) return false
+    tween.onUpdate(1)
     tween.onEnd(EndReason.Forced, tweenId)
     this.tweens.delete(tweenId)
     return true

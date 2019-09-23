@@ -24,6 +24,7 @@ export class InternalTweenClass {
   public isFirstFrame = true
 
   constructor (public id: Tween,
+               public delay: number,
                public duration: number,
                public easing: Easing,
                public onStart: StartFn = noop,

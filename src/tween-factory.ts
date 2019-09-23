@@ -10,11 +10,19 @@ export interface TweenHandlers {
   onEnd?: EndFn
 }
 
-export function tween (duration: number, easing: Easing, { onStart, onUpdate, onEnd }: TweenHandlers): Tween {
+export function tween (duration: number, easing: Easing, tweenHandlers: TweenHandlers): Tween
+export function tween (delay: number, duration: number, easing: Easing, tweenHandlers: TweenHandlers): Tween
+export function tween (...args: any[]): Tween {
   const tweenId = id
   id = (id + 1) as Tween
 
-  const tween = new InternalTweenClass(tweenId, duration, easing, onStart, onUpdate, onEnd)
+  const delay: number = args.length == 3 ? 0 : args[0]
+  const duration: number = args.length == 3 ? args[0] : args[1]
+  const easing: Easing = args.length == 3 ? args[1] : args[2]
+  const tweenHandlers: TweenHandlers = args.length == 3 ? args[2] : args[3]
+  const { onStart, onUpdate, onEnd } = tweenHandlers
+
+  const tween = new InternalTweenClass(tweenId, delay, duration, easing, onStart, onUpdate, onEnd)
   const manager = getDefaultSingletonManager()
   manager.add(tween)
 

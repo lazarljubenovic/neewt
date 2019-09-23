@@ -24,10 +24,15 @@ $ yarn add neewt
 ## API
 
 ### `tween(duration, easing, { onStart, onUpdate, onEnd })`
+### `tween(delay, duration, easing, { onStart, onUpdate, onEnd })`
 
-Creates a tween and immediately schedules it to run. Unless the duration is 0, the animation will kick off in the next animation frame (ie. asynchronously). All tweens you create are executed under the same `requestAnimationFrame` call, so there's usually no need for optimizing for less tweens, except in extreme cases.
+Creates a tween and immediately schedules it to run, unless delay is specified. Unless the duration is 0, the animation will kick off in the next animation frame (ie. asynchronously). All tweens you create are executed under the same `requestAnimationFrame` call, so there's usually no need for optimizing for less tweens, except in extreme cases.
 
-It returns a `Tween` which can be optionally stored somewhere and passed to `finishTween`. 
+It returns a `Tween` which can be optionally stored somewhere and passed to `finishTween`.
+
+#### `delay: number`
+
+If not specified, `0` is assumed. Until this many milliseconds has passed since the tween was created, it won't run. This affects when `onStart` is run.
 
 #### `duration: number`
 
@@ -61,7 +66,7 @@ onUpdate: v => {
 
 #### `onStart: () => void`
 
-A function called when the tween starts. 
+A function called when the tween starts, taking delay into account. 
 
 It's tempting to think that this hook is useless because the animation starts when the tween is created; however in most cases this is not true. When you specify a non-zero `duration` as the first argument to the `tween` function, it only schedules the animation to run in the next frame. Although this is “close enough” for most cases, it could case unexpected flashes if you want to make your object visible before animating it in.
 

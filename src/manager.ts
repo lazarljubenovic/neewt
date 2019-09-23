@@ -18,7 +18,7 @@ export class Manager {
   }
 
   public add (tween: InternalTweenClass) {
-    tween.start = this.getTime()
+    tween.start = this.getTime() + tween.delay
     tween.end = tween.start + tween.duration
     this.tweens.set(tween.id, tween)
   }
@@ -42,25 +42,26 @@ export class Manager {
 
       for (const [tweenId, tween] of this.tweens) {
 
-        // Run the `onStart` hook, if needed.
-        if (tween.isFirstFrame) {
-          tween.onStart()
-          tween.isFirstFrame = false
-        }
-
         // We know where we are in the tween's lifecycle based on the current time.
         // We do NOT count frames. This is what makes Neewt FPS-independent.
         const timestamp = this.getTime()
 
+        // Run the `onStart` hook, if needed.
+        // Do not run if it the tween hasn't started yet (because it's delayed).
+        if (timestamp >= tween.start && tween.isFirstFrame) {
+          tween.onStart()
+          tween.isFirstFrame = false
+        }
+
         // If we've reached the end, finalize the tween.
-        // Otherwise, just do the update.
+        // Otherwise, just do the update (unless it's not yet time to start the tween because of the delay).
         if (timestamp >= tween.end) {
           // We could be overshooting by a bit here, eg. tween ends at 100, and we run this at 91 and 101.
           // We don't want to display the overshoot visually, but display the correct ending frame.
           tween.onUpdate(1)
           tween.onEnd(EndReason.Natural, tweenId)
           ended.add(tweenId)
-        } else {
+        } else if (timestamp >= tween.start) {
           const t = (timestamp - tween.start) / tween.duration
           tween.onUpdate(tween.easing(t))
         }
